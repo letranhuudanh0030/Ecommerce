@@ -11,14 +11,14 @@ import { Head } from '@inertiajs/inertia-vue3';
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Roles
             </h2>
         </template>
 
 
         <Container>
             <Card>
-                You're logged in!
+                Roles
             </Card>
         </Container>
 

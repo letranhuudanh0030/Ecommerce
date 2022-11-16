@@ -15,7 +15,7 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
     .vue()
     .postCss('resources/css/admin/app.css', 'public/css/admin', [require('tailwindcss'), require('autoprefixer')])
     .alias({
-        '@': 'resources/js',
+        '@': 'resources/js/admin',
     });
 
 if (mix.inProduction()) {
