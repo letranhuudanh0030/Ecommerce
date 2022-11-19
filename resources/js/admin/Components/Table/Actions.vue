@@ -5,16 +5,17 @@
             <Edit class="w-4 h-4"/>
         </Link>
     </button>
-    <button v-if="showDelete">
+    <button v-if="showDelete"
+        @click="$emit('deleteClicked', $event)">
         <Trash class="w-4 h-4"/>
     </button>
   </div>
 </template>
 
 <script setup>
-import Edit from "@/Components/Icons/Edit.vue"
-import Trash from "@/Components/Icons/Trash.vue"
-import Link from "@/Components/NavLink.vue"
+import Edit from "@/Components/Icons/Edit.vue";
+import Trash from "@/Components/Icons/Trash.vue";
+import {Link} from '@inertiajs/inertia-vue3';
 
 defineProps({
     editLink: {
