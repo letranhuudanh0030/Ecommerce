@@ -51,7 +51,8 @@ const {
 });
 
 const {
-    filters
+    filters,
+    isLoading,
 } = useFilters({
     filters: props.filters,
     routeResourceName: props.routeResourceName,
@@ -71,7 +72,7 @@ const {
         </template>
 
         <Container>
-            <Card class="mb-4">
+            <Card class="mb-4" >
                 <template #header>
                     Filters
                 </template>
@@ -84,7 +85,7 @@ const {
             </Card>
 
             <Button :href="route(`admin.${routeResourceName}.create`)">Add New</Button>
-            <Card class="mt-4">
+            <Card class="mt-4" :is-loading="isLoading">
                 <Table :headers="headers" :items="items">
                     <template v-slot="{ item }">
                         <Td>{{ item.name }}</Td>

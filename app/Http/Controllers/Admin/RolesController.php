@@ -27,7 +27,7 @@ class RolesController extends Controller
 
         return Inertia::render('Role/Index', [
             'title' => 'Roles',
-            'roles' => RoleResource::collection($roles),
+            'items' => RoleResource::collection($roles),
             'headers' => [
                 [
                     'label' => 'Name',
