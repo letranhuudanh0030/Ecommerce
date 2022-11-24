@@ -12,6 +12,8 @@ use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
+    private $routeResourceName = 'roles';
+
     public function index(Request $request){
         $roles = Role::query()
             ->select([
@@ -24,6 +26,7 @@ class RolesController extends Controller
             ->paginate(10);
 
         return Inertia::render('Role/Index', [
+            'title' => 'Roles',
             'roles' => RoleResource::collection($roles),
             'headers' => [
                 [
@@ -40,6 +43,7 @@ class RolesController extends Controller
                 ],
             ],
             'filters' => (object) $request->all(),
+            'routeResourceName' => $this->routeResourceName,
         ]);
     }
 
