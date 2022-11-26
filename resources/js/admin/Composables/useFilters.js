@@ -4,9 +4,7 @@ import { Inertia } from "@inertiajs/inertia";
 export default function(params) {
     const {filters: defaultFilters, routeResourceName} = params;
 
-    const filters = ref({
-        name: "",
-    });
+    const filters = ref(defaultFilters);
 
     const isLoading = ref(false);
     const fetchItemsHandler = ref(null);
@@ -24,10 +22,6 @@ export default function(params) {
             },
         });
     }
-
-    onMounted(() => {
-        filters.value = defaultFilters;
-    });
 
     watch(filters, () => {
         clearTimeout(fetchItemsHandler.value);
