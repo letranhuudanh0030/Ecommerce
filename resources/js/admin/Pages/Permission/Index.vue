@@ -13,6 +13,8 @@ import Modal from "@/Components/Modal.vue";
 import Label from "@/Components/Label.vue";
 import Input from "@/Components/Input.vue";
 
+import Filters from "./Filters.vue";
+
 import useDeleteItem from "@/Composables/useDeleteItem";
 import useFilters from "@/Composables/useFilters";
 
@@ -72,17 +74,7 @@ const {
         </template>
 
         <Container>
-            <Card class="mb-4" >
-                <template #header>
-                    Filters
-                </template>
-                <form class="grid grid-cols-4 gap-8">
-                    <div>
-                        <Label for="name" value="Name" />
-                        <Input id="name" type="text" class="mt-1 block w-full" v-model="filters.name" />
-                    </div>
-                </form>
-            </Card>
+            <Filters v-model="filters"/>
 
             <Button :href="route(`admin.${routeResourceName}.create`)">Add New</Button>
             <Card class="mt-4" :is-loading="isLoading">
