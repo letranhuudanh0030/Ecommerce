@@ -18,7 +18,6 @@ import Filters from "./Filters.vue";
 import useDeleteItem from "@/Composables/useDeleteItem";
 import useFilters from "@/Composables/useFilters";
 
-
 const props = defineProps({
     title: {
         type: String,
@@ -52,15 +51,10 @@ const {
     routeResourceName: props.routeResourceName,
 });
 
-const {
-    filters,
-    isLoading,
-} = useFilters({
+const { filters, isLoading } = useFilters({
     filters: props.filters,
     routeResourceName: props.routeResourceName,
 });
-
-
 </script>
 
 <template>
@@ -69,22 +63,30 @@ const {
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{title}}
+                {{ title }}
             </h2>
         </template>
 
         <Container>
-            <Filters v-model="filters"/>
+            <Filters v-model="filters" />
 
-            <Button :href="route(`admin.${routeResourceName}.create`)">Add New</Button>
+            <Button :href="route(`admin.${routeResourceName}.create`)"
+                >Add New</Button
+            >
             <Card class="mt-4" :is-loading="isLoading">
                 <Table :headers="headers" :items="items">
                     <template v-slot="{ item }">
                         <Td>{{ item.name }}</Td>
                         <Td>{{ item.created_at_formatted }}</Td>
                         <Td>
-                            <Actions :edit-link="route(`admin.${routeResourceName}.edit`, {id: item.id})"
-                                @deleteClicked="showDeleteModal(item)"/>
+                            <Actions
+                                :edit-link="
+                                    route(`admin.${routeResourceName}.edit`, {
+                                        id: item.id,
+                                    })
+                                "
+                                @deleteClicked="showDeleteModal(item)"
+                            />
                         </Td>
                     </template>
                 </Table>
@@ -95,8 +97,7 @@ const {
     <Modal v-model="deleteModal" :title="`Delete ${itemToDelete.name}`">
         Are you sure, you want to delete this item?
         <template #footer>
-            <Button @click="handleDeleteItem"
-                    :disabled="isDeleting">
+            <Button @click="handleDeleteItem" :disabled="isDeleting">
                 <span v-if="isDeleting">Deleting...</span>
                 <span v-else>Delete</span>
             </Button>

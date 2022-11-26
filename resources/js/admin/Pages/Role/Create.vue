@@ -8,6 +8,7 @@ import Button from "@/Components/Button.vue";
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import InputError from '@/Components/InputError.vue';
+import Permissions from './Permissions.vue';
 
 const props = defineProps({
     edit: {
@@ -25,10 +26,13 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    permissions: {
+        type: Array,
+    },
 });
 
 const form = useForm({
-    name: '',
+    name: props.item.name ?? "",
 });
 
 const submit = () => {
@@ -70,5 +74,7 @@ onMounted(() => {
                </form>
             </Card>
         </Container>
+
+        <Permissions v-if="edit" class="mt-6" :role="item" :permissions="permissions" />
     </BreezeAuthenticatedLayout>
 </template>

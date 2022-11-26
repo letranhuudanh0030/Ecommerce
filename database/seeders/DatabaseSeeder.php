@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +17,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
-            'name' => 'Adminphp '
+            'name' => 'Admin',
+        ]);
+
+        User::factory()->create([
+            'email' => 'editor@editor.com',
+            'password' => bcrypt('password'),
+            'name' => 'Editor',
         ]);
 
         $this->call(RolesSeeder::class);
