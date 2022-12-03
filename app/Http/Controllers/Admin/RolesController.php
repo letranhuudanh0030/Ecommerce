@@ -16,6 +16,14 @@ class RolesController extends Controller
 {
     private $routeResourceName = 'roles';
 
+    public function __construct()
+    {
+        $this->middleware('can:view roles list')->only('index');
+        $this->middleware('can:create role')->only(['create', 'store']);
+        $this->middleware('can:edit role')->only(['edit', 'update']);
+        $this->middleware('can:delete role')->only('destroy');
+    }
+
     public function index(Request $request){
         $roles = Role::query()
             ->select([
